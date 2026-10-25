@@ -52,6 +52,7 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'client_name' => ['nullable', 'string', 'max:100'],
             'title' => ['required', 'string', 'max:100', 'unique:projects,title'],
             'description' => ['required', 'string', 'min:10', 'max:1000'],
             'tech_stack' => ['required', 'string', 'max:150'],

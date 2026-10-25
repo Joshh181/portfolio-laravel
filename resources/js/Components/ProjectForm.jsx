@@ -9,6 +9,7 @@ export default function ProjectForm({ project = null, isEdit = false }) {
 
     // Inertia useForm maintains user typed input across validation failures automatically
     const { data, setData, post, put, processing, errors, progress } = useForm({
+        client_name: project?.client_name || '',
         title: project?.title || '',
         description: project?.description || '',
         tech_stack: project?.tech_stack || '',
@@ -125,6 +126,27 @@ export default function ProjectForm({ project = null, isEdit = false }) {
                             : 'border-zinc-200 dark:border-zinc-700 focus:ring-indigo-500/30 focus:border-indigo-500'
                     }`}
                 />
+
+                {/* Client Name */}
+                <FormField
+                    label="Client Name"
+                    name="client_name"
+                    error={errors.client_name}
+                >
+                    <input
+                        type="text"
+                        id="client_name"
+                        name="client_name"
+                        value={data.client_name}
+                        onChange={(e) => setData('client_name', e.target.value)}
+                        placeholder="Enter the client's name"
+                        className={`w-full px-4 py-2.5 rounded-xl border text-sm transition-all focus:outline-none focus:ring-2 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 ${
+                            errors.client_name
+                                ? 'border-rose-300 dark:border-rose-700 focus:ring-rose-500/30'
+                                : 'border-zinc-200 dark:border-zinc-700 focus:ring-indigo-500/30 focus:border-indigo-500'
+                        }`}
+                    />
+                </FormField>
             </FormField>
 
             {/* URLs Grid (Live Demo & Repository) */}
